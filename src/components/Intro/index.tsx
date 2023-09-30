@@ -6,7 +6,7 @@ import InfoWithIcon from "../InfoWithIcon";
 import {ShoppingCart,Package,Timer} from "phosphor-react"
  
 export default function Intro () {
-    alert(window.innerWidth)
+    
     const {colors} = useTheme()
     return <IntroContainer>
         <IntroContent className="container">

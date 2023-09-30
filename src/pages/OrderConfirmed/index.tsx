@@ -7,11 +7,29 @@ import {useTheme} from "styled-components"
 import {useLocation} from "react-router-dom"
 import { formDataType } from "../CompleteOrder";
 import { paymentsMethods } from "../../components/PaymentOptionMethod";
+import { useNavigate } from "react-router-dom";
+import {useEffect} from "react"
 export default function OrderConfirmed() {
+    const navigate = useNavigate()
+  
     const {colors} = useTheme()
-    const {state} = useLocation() 
-    const dados = state as unknown as formDataType
-    
+    interface Idata{
+        data: formDataType
+    }
+    interface IState{
+        state: Idata
+    }
+   
+    const {state} = useLocation() as unknown as IState
+    useEffect( () => {
+        if(!state){
+            navigate("/")
+        }
+      
+    },[])
+    if (!state) {
+        return <></>
+    }
     return (
         <OrderConfirmedContainer className="container">
             <div>
@@ -24,7 +42,7 @@ export default function OrderConfirmed() {
                         <RegularText>
                             Entrega em <strong>{state.data.street}</strong>
                             <br />
-                           {dados.bairro}
+                           {state.data.bairro}
                         </RegularText>
                 } />
                     <InfoWithIcon icon={<Clock weight="fill"/>}  iconBg={colors["brand-yellow"]} text={
@@ -36,7 +54,7 @@ export default function OrderConfirmed() {
                     <InfoWithIcon icon={<CurrencyDollar weight="fill"/>}  iconBg={colors["brand-yellow-dark"]} text={
                         <RegularText>
                           Pagamento na entrega<br />
-                             <strong> { paymentsMethods[state.data.paymentsMethod].label }</strong>
+                             <strong>{paymentsMethods[state.data.paymentmethod].label}</strong>
                         </RegularText>
                 } />
                 </OrderDetailsConfiremed>

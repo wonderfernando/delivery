@@ -18,5 +18,17 @@ grid-auto-flow: auto;
     .complemento{
         grid-column: span 2;
     }
+    @media (max-width: 950px) {
+        grid-template-columns: 19.5rem 19.25rem 3.75rem;
+    }
+    @media (max-width: 800px) {
+        &{
+            display: flex;
+            flex-direction: column ;
+        }
+        input{
+           width: 100%;
+        }
+    }
 
 `

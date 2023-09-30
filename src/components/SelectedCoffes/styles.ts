@@ -6,6 +6,10 @@ display: flex;
 flex-direction: column;
 gap: 0.75rem;
 width: 40rem;
+@media (max-width: 950px) {
+    width: 100%;
+    max-width: 900px;
+}
 `
 
 export const DetailsContainer = styled(SectionBaseStyle)`

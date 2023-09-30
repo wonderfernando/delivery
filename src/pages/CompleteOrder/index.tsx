@@ -5,12 +5,14 @@ import { CompleteOrderContainer } from "./styles"
 import * as zod from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
  import {useNavigate} from "react-router-dom"
-
+import {useCart} from "../../hooks/useCart"
+import {useEffect}  from "react"
  enum method{
     credit= "credit",
     debit= "debit",
     money= "money"
  } 
+
 const confirOrderFormValidate = zod.object({
         cep: zod.string().min(1,"Campo obrigatorio"),
         street: zod.string().min(1,"Informe a Rua"),
@@ -28,7 +30,16 @@ const confirOrderFormValidate = zod.object({
 export type formDataType = zod.infer<typeof confirOrderFormValidate>
 
 export default function CompleteOrder() {
-    const navigate = useNavigate()
+   
+   const {cleanCart, quantityItemsCart} = useCart()
+   const navigate = useNavigate()
+    useEffect(()=> {
+        if(quantityItemsCart===0){
+          navigate("/")   
+        }
+    },[])
+    if(quantityItemsCart===0)
+        return <></>
    const confirmForm = useForm<formDataType>({
     resolver: zodResolver(confirOrderFormValidate)
    })
@@ -37,9 +48,10 @@ export default function CompleteOrder() {
    function onSubmitOrder(data: formDataType) {
         navigate("/order-confirmed",{
             state: {
-                data: data
+                data
             }
         })
+       cleanCart()
    } 
    return (
         <FormProvider {...confirmForm} >

@@ -17,6 +17,16 @@ export const OrderConfirmedContainer = styled.div`
 
         }
     }
+    @media (max-width:960px) {
+        > section > img{
+            display: none;
+        }
+        &{
+            justify-content: center;
+            align-items: center;
+        }
+    }
+  
 `
 
 export const OrderDetailsConfiremed = styled.div`

@@ -10,7 +10,8 @@ interface ICartContext{
     quantityItemsCart: number,
     changeCartItemQuantity: ( id: number , type: "decrease" | "add",) => void,
     removeCartItem: (id: number) => void,
-    totalValue: number
+    totalValue: number,
+    cleanCart: ()=>void
 
 }
 
@@ -46,7 +47,9 @@ export function CartContextProvider({children} : {children: ReactNode}) {
         const newCartItem = cartItems.filter(cartItem => cartItem.id != id)
         setItems(newCartItem)
    }
-
+function cleanCart() {
+    setItems([])
+}
    function changeCartItemQuantity(id:number, type: "add" | "decrease") {
         if (type=== "add") {
             
@@ -71,7 +74,7 @@ export function CartContextProvider({children} : {children: ReactNode}) {
         window.localStorage.setItem(KEY, JSON.stringify(cartItems))
    },[cartItems])
     return (
-        <CartContext.Provider value={{totalValue, removeCartItem,changeCartItemQuantity,cartItems,addCoffeeToCart,quantityItemsCart}}>
+        <CartContext.Provider value={{cleanCart,totalValue, removeCartItem,changeCartItemQuantity,cartItems,addCoffeeToCart,quantityItemsCart}}>
             {children}
         </CartContext.Provider>
     )
