@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
  import {useNavigate} from "react-router-dom"
 import {useCart} from "../../hooks/useCart"
 import {useEffect}  from "react"
+import { toast } from "react-toastify"
  enum method{
     credit= "credit",
     debit= "debit",
@@ -51,6 +52,7 @@ export default function CompleteOrder() {
                 data
             }
         })
+        toast.success("Pedido enviado")
        cleanCart()
    } 
    return (

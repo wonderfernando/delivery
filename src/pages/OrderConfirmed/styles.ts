@@ -22,6 +22,7 @@ export const OrderConfirmedContainer = styled.div`
             display: none;
         }
         &{
+            
             justify-content: center;
             align-items: center;
         }
@@ -37,12 +38,17 @@ export const OrderDetailsConfiremed = styled.div`
     flex-direction: column;
     gap: 2rem;
     position: relative;
-    min-width: 32rem;
+   
     border: 1px solid #dbac2c;
     &::before{
         content: "";
         inset: -1px;
         border-radius: 7px 37px 7px 37px;
         background: linear-gradient(102.89deg, #dbac2c 2.61%,#8047f8 98.76%);
+    }
+    @media (max-width: 900px){
+        max-width: 800px;
+        width: 100%;
+    
     }
 `
