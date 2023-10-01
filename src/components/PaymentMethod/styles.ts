@@ -10,10 +10,13 @@ export const PaymentMethodContainer = styled.div`
         background: ${({theme})=>theme.colors["brand-purple-light"]};
         border: 1px solid ${({theme})=>theme.colors["brand-purple"]};
     }
+    @media (max-width:500px){
+        width: 100%;
+    }
 `
 
 export const ContentContainer = styled.div`
- display: flex;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: 0 1rem;
@@ -31,5 +34,8 @@ export const ContentContainer = styled.div`
     }
     svg{
         color: ${({theme})=> theme.colors["brand-purple"]};
+    }
+    @media (max-width:500px){
+        width: 100%;
     }
 `
